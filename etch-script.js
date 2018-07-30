@@ -5,10 +5,7 @@ let btnClear= document.getElementById("clearGrid");
 btnClear.addEventListener("click", clearGrid);
 
 let btnBlack= document.getElementById("blackCursor");
-btnBlack.addEventListener("click", black);
-
-let btnColor= document.getElementsByID("colorCursor");
-btnColor.addEventListener("click", color);
+btnBlack.addEventListener("click", changeToBlack);
 
 function createGrid (){
   size = prompt("How many rows do you want?");
@@ -28,11 +25,20 @@ function createGrid (){
 function clearGrid(){
     grid.innerHTML = "";
 }
+function changeToBlack(){
+  let gridDiv = document.getElementById("grid");
 
-function black(){
+  gridDiv.onmouseover = function(event) {
+    let target = event.target;
+    target.style.background="black";
+  }
 
+  gridDiv.onmouseout = function(event) {
+    let target = event.target;
+    target.style.background="";
+  }
 }
 
-function multiColor(){
-
+function black(element){
+  this.style.backgroundColor = "black";
 }
