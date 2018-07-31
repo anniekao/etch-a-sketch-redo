@@ -7,6 +7,9 @@ btnClear.addEventListener("click", clearGrid);
 let btnBlack= document.getElementById("blackCursor");
 btnBlack.addEventListener("click", changeToBlack);
 
+let btnColor= document.getElementById("technicolorCursor");
+btnColor.addEventListener("click", changeToTechnicolor);
+
 function createGrid (){
   size = prompt("How many rows do you want?");
   i = 0;
@@ -23,22 +26,32 @@ function createGrid (){
 }
 
 function clearGrid(){
-    grid.innerHTML = "";
+  grid.innerHTML = "";
+  gridDiv.onmouseover= function(event) {
+    let target = event.target;
+    target.style.background="white";
+  }
+
 }
 function changeToBlack(){
-  let gridDiv = document.getElementById("grid");
+  gridDiv = document.getElementById("grid");
 
   gridDiv.onmouseover = function(event) {
     let target = event.target;
     target.style.background="black";
   }
+}
 
-  gridDiv.onmouseout = function(event) {
+function changeToTechnicolor() {
+  gridDiv = document.getElementById("grid");
+
+  gridDiv.onmouseover = function(event) {
     let target = event.target;
-    target.style.background="";
+    let color = "rgb("+ generateColor() + "," + generateColor() + "," + generateColor() +  ")";
+    target.style.background= color;
   }
 }
 
-function black(element){
-  this.style.backgroundColor = "black";
+function generateColor() {
+  return Math.floor(Math.random()*256)
 }
